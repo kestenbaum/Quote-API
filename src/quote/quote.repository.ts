@@ -10,11 +10,11 @@ export class QuoteRepository {
     this.quotes = getQuoteData();
   }
 
-  getAllUsers(): Quote[] {
+  getAllQuotes(): Quote[] {
     return [...this.quotes];
   }
 
-  getRandomUser(): Quote | undefined {
+  getRandomQuote(): Quote | undefined {
     if (this.quotes.length === 0) return undefined;
     const randomIndex = Math.floor(Math.random() * this.quotes.length);
     return this.quotes[randomIndex];

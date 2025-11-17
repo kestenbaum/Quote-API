@@ -8,6 +8,11 @@ export class QuoteController {
 
   @Get()
   getAll(): Quote[] {
-    return this.quoteService.getAllUsers();
+    return this.quoteService.getAllQuotes();
+  }
+
+  @Get('random')
+  getRandomQuote(): Quote | undefined {
+    return this.quoteService.getRandomQuote();
   }
 }
