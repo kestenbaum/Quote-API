@@ -8,4 +8,7 @@ export class UserService {
   getAllUsers(): User[] {
     return this.userRepository.getAllUsers();
   }
+  getRandomUser() {
+    return this.userRepository.getRandomUser();
+  }
 }

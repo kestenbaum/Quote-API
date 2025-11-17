@@ -13,4 +13,10 @@ export class UserRepository {
   getAllUsers(): User[] {
     return [...this.users];
   }
+
+  getRandomUser(): User | undefined {
+    if (this.users.length === 0) return undefined;
+    const randomIndex = Math.floor(Math.random() * this.users.length);
+    return this.users[randomIndex];
+  }
 }
