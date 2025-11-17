@@ -1,6 +1,6 @@
-import { User } from '../interface/user.interface';
+import { Quote } from '../interface/quote.interface';
 
-let users: User[] = [
+let quotes: Quote[] = [
   {
     id: '1',
     quote: 'The only way to do great work is to love what you do.',
@@ -54,10 +54,10 @@ let users: User[] = [
   },
 ];
 
-export const getUsersData = (): User[] => {
-  return [...users];
+export const getQuoteData = (): Quote[] => {
+  return [...quotes];
 };
 
-export const saveUserData = (newUsers: User[]): void => {
-  users = newUsers;
+export const saveQuoteData = (newQuote: Quote[]): void => {
+  quotes = newQuote;
 };

@@ -1,4 +1,4 @@
-export interface User {
+export interface Quote {
   id: string;
   quote: string;
   author: string;
