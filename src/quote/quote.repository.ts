@@ -1,22 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { getQuoteData } from './data/quote.data';
-import { Quote } from './interface/quote.interface';
+import { InjectRepository } from '@nestjs/typeorm';
+import { QuoteEntity } from './entity/quote.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class QuoteRepository {
-  private quotes: Quote[] = [];
+  constructor(
+    @InjectRepository(QuoteEntity)
+    private readonly typeOrmRepository: Repository<QuoteEntity>,
+  ) {}
 
-  constructor() {
-    this.quotes = getQuoteData();
-  }
-
-  getAllQuotes(): Quote[] {
-    return [...this.quotes];
-  }
-
-  getRandomQuote(): Quote | undefined {
-    if (this.quotes.length === 0) return undefined;
-    const randomIndex = Math.floor(Math.random() * this.quotes.length);
-    return this.quotes[randomIndex];
+  async findAllQuotes(): Promise<QuoteEntity[]> {
+    return this.typeOrmRepository.find();
   }
 }
