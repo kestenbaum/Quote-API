@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { QuoteRepository } from './quote.repository';
 import { QuoteEntity } from './entity/quote.entity';
+import { createQuoteDto } from './dto/create-quote.dto';
 @Injectable()
 export class QuoteService {
   constructor(private readonly quoteRepository: QuoteRepository) {}
@@ -12,7 +13,7 @@ export class QuoteService {
     return this.quoteRepository.findOneById(id);
   }
 
-  async create(quote: Partial<QuoteEntity>): Promise<QuoteEntity> {
+  async create(quote: createQuoteDto): Promise<QuoteEntity> {
     return this.quoteRepository.create(quote);
   }
 
