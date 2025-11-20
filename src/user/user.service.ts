@@ -3,6 +3,7 @@ import { UserRepository } from './user.repository';
 import { UserDto } from './dto/user.dto';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './entity/user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -17,7 +18,16 @@ export class UserService {
   }
 
   async createUser(userData: Omit<UserDto, 'id'>) {
-    return this.userRepository.create({ id: uuidv4(), ...userData });
+    const salt = await bcrypt.genSalt(10);
+    const hashedPass = await bcrypt.hash(userData.password, salt);
+
+    const user = this.userRepository.create({
+      id: uuidv4(),
+      ...userData,
+      password: hashedPass,
+    });
+
+    return user;
   }
 
   async updateUser(id: string, updateData: UserDto): Promise<User | null> {
